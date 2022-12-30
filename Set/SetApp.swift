@@ -4,6 +4,7 @@
 //
 //  Created by Brice Brown on 12/30/22.
 //
+// App
 
 import SwiftUI
 
@@ -11,7 +12,8 @@ import SwiftUI
 struct SetApp: App {
     var body: some Scene {
         WindowGroup {
-            SetGameView()
+            let game = SetGameViewModel()
+            SetGameView(game: game)
         }
     }
 }

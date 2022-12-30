@@ -11,6 +11,12 @@
 		429848DC295F844600B208D7 /* SetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848DB295F844600B208D7 /* SetGameView.swift */; };
 		429848DE295F844900B208D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429848DD295F844900B208D7 /* Assets.xcassets */; };
 		429848E1295F844900B208D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 429848E0295F844900B208D7 /* Preview Assets.xcassets */; };
+		429848E8295F863E00B208D7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848E7295F863E00B208D7 /* Card.swift */; };
+		429848F0295F881200B208D7 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848EF295F881200B208D7 /* Diamond.swift */; };
+		429848F2295F8C5800B208D7 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848F1295F8C5800B208D7 /* SetGame.swift */; };
+		429848F4295F916100B208D7 /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848F3295F916100B208D7 /* SetGameViewModel.swift */; };
+		429848F6295F931800B208D7 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848F5295F931800B208D7 /* AspectVGrid.swift */; };
+		429848F8295F93B400B208D7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429848F7295F93B400B208D7 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		429848DB295F844600B208D7 /* SetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameView.swift; sourceTree = "<group>"; };
 		429848DD295F844900B208D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		429848E0295F844900B208D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		429848E7295F863E00B208D7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		429848EF295F881200B208D7 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		429848F1295F8C5800B208D7 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
+		429848F3295F916100B208D7 /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
+		429848F5295F931800B208D7 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
+		429848F7295F93B400B208D7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,12 @@
 			children = (
 				429848D9295F844600B208D7 /* SetApp.swift */,
 				429848DB295F844600B208D7 /* SetGameView.swift */,
+				429848F7295F93B400B208D7 /* CardView.swift */,
+				429848F5295F931800B208D7 /* AspectVGrid.swift */,
+				429848EF295F881200B208D7 /* Diamond.swift */,
+				429848E7295F863E00B208D7 /* Card.swift */,
+				429848F1295F8C5800B208D7 /* SetGame.swift */,
+				429848F3295F916100B208D7 /* SetGameViewModel.swift */,
 				429848DD295F844900B208D7 /* Assets.xcassets */,
 				429848DF295F844900B208D7 /* Preview Content */,
 			);
@@ -138,6 +156,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				429848DC295F844600B208D7 /* SetGameView.swift in Sources */,
+				429848E8295F863E00B208D7 /* Card.swift in Sources */,
+				429848F6295F931800B208D7 /* AspectVGrid.swift in Sources */,
+				429848F2295F8C5800B208D7 /* SetGame.swift in Sources */,
+				429848F4295F916100B208D7 /* SetGameViewModel.swift in Sources */,
+				429848F0295F881200B208D7 /* Diamond.swift in Sources */,
+				429848F8295F93B400B208D7 /* CardView.swift in Sources */,
 				429848DA295F844600B208D7 /* SetApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
