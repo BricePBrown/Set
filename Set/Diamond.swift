@@ -10,10 +10,10 @@ import SwiftUI
 
 struct Diamond: Shape{
     func path(in rect: CGRect) -> Path {
-        var topPoint = CGPoint(x: rect.midX, y: rect.maxY)
-        var bottomPoint = CGPoint(x: rect.midX, y: rect.minY)
-        var leftPoint = CGPoint(x: rect.minX, y: rect.midY)
-        var rightPoint = CGPoint(x: rect.maxX, y: rect.midY)
+        let topPoint = CGPoint(x: rect.midX, y: rect.maxY)
+        let bottomPoint = CGPoint(x: rect.midX, y: rect.minY)
+        let leftPoint = CGPoint(x: rect.minX, y: rect.midY)
+        let rightPoint = CGPoint(x: rect.maxX, y: rect.midY)
         
         var p = Path()
         p.move(to: topPoint)

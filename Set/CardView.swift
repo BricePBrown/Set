@@ -16,6 +16,7 @@ struct CardView: View {
             ZStack{
                 let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                 if card.isSelected{
+                    shape.shadow(color: .yellow, radius: 5)
                     shape.fill().foregroundColor(.white)
                     shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
                     generateShape(for: card)
@@ -29,13 +30,35 @@ struct CardView: View {
     }
 }
 
-@ViewBuilder
 private func generateShape(for card: Card) -> some View{
-    VStack{
-        Diamond()
-        Diamond()
-        Diamond()
+    
+    let shapeColor: Color
+    switch card.color{
+    case .a:
+        shapeColor = .green
+    case .b:
+        shapeColor = .orange
+    case .c:
+        shapeColor = .purple
     }
+    
+    return VStack{
+        Spacer()
+        ForEach(1...card.numOfShapes, id: \.self){ i in
+            switch card.shape{
+            case .diamond:
+                Diamond()
+            case .oval:
+                Ellipse()
+            case .rectangle:
+                Rectangle()
+            }
+        }
+        .aspectRatio(2, contentMode: .fit)
+        Spacer()
+    }
+    .opacity(card.colorFeature.rawValue)
+    .foregroundColor(shapeColor)
 }
 
 private struct DrawingConstants{

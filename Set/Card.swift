@@ -9,9 +9,9 @@
 import Foundation
 
 enum Opacity: CGFloat, CaseIterable{
-    case light = 0.4
+    case light = 0.25
     case medium = 0.6
-    case dark = 0.8
+    case dark = 1.0
 }
 
 enum SetShapes: CaseIterable {
@@ -27,7 +27,7 @@ enum SetColors: CaseIterable {
 struct Card: Identifiable {
     // each card has 4 unique features:
     let shape: SetShapes
-    let numOfShapes: Int
+    var numOfShapes: Int
     let color: SetColors
     let colorFeature: Opacity
     
