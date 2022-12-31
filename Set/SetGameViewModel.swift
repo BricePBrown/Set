@@ -25,5 +25,27 @@ class SetGameViewModel: ObservableObject {
     func choose(_ card: Card){
         model.choose(card)
     }
+    
+    func draw(_ numberOfNewCards: Int){
+        model.draw(numberOfNewCards)
+    }
+    
+    func newGame(){
+        model = SetGame()
+    }
+    
+    func cardMatchColor(_ card: Card) -> Color{
+        let matchStatus: Color
+        
+        if(card.isMatched == .incorrect){
+            matchStatus = .red
+        } else if (card.isMatched == .correct){
+            matchStatus = .blue
+        } else {
+            matchStatus = .gray
+        }
+        
+        return matchStatus
+    }
 }
 

@@ -14,15 +14,39 @@ struct SetGameView: View {
     @ObservedObject var game: SetGameViewModel
     
     var body: some View {
-        AspectVGrid(items: game.cards, aspectRatio: 2/3){ card in
-            CardView(card: card)
-                .padding(4)
-                .onTapGesture{
-                    game.choose(card)
-                }
+        VStack{
+            AspectVGrid(items: game.cards, aspectRatio: 2/2.75){ card in
+                CardView(card: card)
+                    .padding(4)
+                    .onTapGesture{
+                        game.choose(card)
+                    }
+                    .foregroundColor(game.cardMatchColor(card))
+            }
+            .padding(.horizontal)
+            HStack{
+                Spacer()
+                Button(action: {
+                    game.draw(3)
+                }, label: {
+                    Text("Deal 3 More Cards")
+                })
+                .padding()
+                .background(.white)
+                .clipShape(Capsule())
+                Spacer()
+                Button(action: {
+                    game.newGame()
+                }, label: {
+                    Text("New Game")
+                })
+                .padding()
+                .background(.white)
+                .clipShape(Capsule())
+                Spacer()
+            }
+            .fontWeight(.bold)
         }
-        .foregroundColor(.red)
-        .padding(.horizontal)
     }
 }
 

@@ -13,18 +13,23 @@ struct CardView: View {
     
     var body: some View {
         GeometryReader{ geometry in
+            
             ZStack{
                 let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                
                 if card.isSelected{
-                    shape.shadow(color: .yellow, radius: 5)
-                    shape.fill().foregroundColor(.white)
-                    shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
-                    generateShape(for: card)
-                        .padding(5)
-                        
-                } else{
-                    shape.fill()
+                    shape.shadow(color: .gray, radius: 10)
+                    shape.fill().foregroundColor(Color.init(red: 0.8, green: 0.8, blue: 0.8))
                 }
+                else{
+                    shape.fill().foregroundColor(.white)
+                }
+                
+                shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
+                generateShape(for: card)
+                    .padding(.leading, DrawingConstants.shapePadding)
+                    .padding(.trailing, DrawingConstants.shapePadding)
+                
             }
         }
     }
@@ -62,7 +67,7 @@ private func generateShape(for card: Card) -> some View{
 }
 
 private struct DrawingConstants{
-    static let cornerRadius: CGFloat = 10
-    static let lineWidth: CGFloat = 3
-    static let shapePadding: CGFloat = 3
+    static let cornerRadius: CGFloat = 15
+    static let lineWidth: CGFloat = 4
+    static let shapePadding: CGFloat = 10
 }

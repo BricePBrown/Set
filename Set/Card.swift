@@ -24,6 +24,10 @@ enum SetColors: CaseIterable {
     case a,b,c
 }
 
+enum SetMatches: CaseIterable{
+    case correct, incorrect, unmatched
+}
+
 struct Card: Identifiable {
     // each card has 4 unique features:
     let shape: SetShapes
@@ -34,6 +38,6 @@ struct Card: Identifiable {
     let id: Int
     
     // states of the card
-    var isSelected: Bool = true
-    var isMatched: Bool = false 
+    var isSelected: Bool = false
+    var isMatched: SetMatches = .unmatched
 }
