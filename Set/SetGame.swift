@@ -12,10 +12,12 @@ struct SetGame {
     private(set) var deck: [Card]
     private(set) var cards: [Card]
     private var numOfCurrentlySelected: Int
+    private(set) var playerScore: Int
     
     
     init() {
         numOfCurrentlySelected = 0
+        playerScore = 0
         deck = []
         // each deck has 81 cards
         var index: Int = 0
@@ -55,6 +57,7 @@ struct SetGame {
                 for card in matchedCards{
                     if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}){
                         cards[chosenIndex].isMatched = cardMatch ? .correct : .incorrect
+                        playerScore += cardMatch ? 1 : -1
                         cards[chosenIndex].isSelected = false
                     }
                 }

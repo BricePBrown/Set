@@ -24,6 +24,10 @@ class SetGameViewModel: ObservableObject {
         return model.deck.isEmpty
     }
     
+    var score: Int{
+        return model.playerScore
+    }
+    
     // MARK: - Intents(s)
     
     func choose(_ card: Card){

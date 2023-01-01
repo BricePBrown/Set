@@ -15,15 +15,19 @@ struct SetGameView: View {
     
     var body: some View {
         VStack{
+            HStack{
+                Text("Score: \(game.score)").font(.largeTitle).fontWeight(.bold)
+                Spacer()
+            }
+            .padding(.leading)
             AspectVGrid(items: game.cards, aspectRatio: 2/2.75){ card in
                 CardView(card: card)
-                    .padding(4)
+                    .padding(5)
                     .onTapGesture{
                         game.choose(card)
                     }
                     .foregroundColor(game.cardMatchColor(card))
             }
-            .padding(.horizontal)
             HStack{
                 Spacer()
                 DealButton()
@@ -31,10 +35,10 @@ struct SetGameView: View {
                 Button(action: {
                     game.newGame()
                 }, label: {
-                    Text("New Game")
+                    Text("New Game").foregroundColor(.accentColor)
                 })
                 .padding()
-                .background(.white)
+                .background(Color.primary)
                 .clipShape(Capsule())
                 Spacer()
             }
@@ -59,10 +63,11 @@ struct SetGameView: View {
                 game.draw(3)
             }, label: {
                 Text("Draw 3 Cards")
+                    .foregroundColor(.accentColor)
             })
             .disabled(false)
             .padding()
-            .background(.white)
+            .background(Color.primary)
             .clipShape(Capsule())
         }
     }
@@ -74,5 +79,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = SetGameViewModel()
         SetGameView(game: game).preferredColorScheme(.dark)
+        SetGameView(game: game).preferredColorScheme(.light)
     }
 }

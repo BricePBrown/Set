@@ -9,8 +9,8 @@
 import Foundation
 
 enum Opacity: CGFloat, CaseIterable{
-    case light = 0.25
-    case medium = 0.6
+    case light = 0.0
+    case medium = 0.5
     case dark = 1.0
 }
 
