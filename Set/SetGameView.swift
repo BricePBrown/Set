@@ -26,14 +26,7 @@ struct SetGameView: View {
             .padding(.horizontal)
             HStack{
                 Spacer()
-                Button(action: {
-                    game.draw(3)
-                }, label: {
-                    Text("Deal 3 More Cards")
-                })
-                .padding()
-                .background(.white)
-                .clipShape(Capsule())
+                DealButton()
                 Spacer()
                 Button(action: {
                     game.newGame()
@@ -48,7 +41,34 @@ struct SetGameView: View {
             .fontWeight(.bold)
         }
     }
+    
+    @ViewBuilder
+    private func DealButton() -> some View {
+        if(game.isDeckEmpty){
+            Button(action: {
+            }, label: {
+                Text("Deck is Empty")
+            })
+            .disabled(true)
+            .padding()
+            .background(.gray)
+            .clipShape(Capsule())
+        }
+        else{
+            Button(action: {
+                game.draw(3)
+            }, label: {
+                Text("Draw 3 Cards")
+            })
+            .disabled(false)
+            .padding()
+            .background(.white)
+            .clipShape(Capsule())
+        }
+    }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

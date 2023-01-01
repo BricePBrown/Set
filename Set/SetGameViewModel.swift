@@ -20,6 +20,10 @@ class SetGameViewModel: ObservableObject {
         return model.cards
     }
     
+    var isDeckEmpty: Bool{
+        return model.deck.isEmpty
+    }
+    
     // MARK: - Intents(s)
     
     func choose(_ card: Card){
@@ -27,7 +31,12 @@ class SetGameViewModel: ObservableObject {
     }
     
     func draw(_ numberOfNewCards: Int){
-        model.draw(numberOfNewCards)
+        if (!cards.filter{$0.isMatched == .correct}.isEmpty) {
+            model.removeMatchingCards()
+        }
+        else{
+            model.draw(numberOfNewCards)
+        }
     }
     
     func newGame(){

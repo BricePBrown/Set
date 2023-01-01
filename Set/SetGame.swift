@@ -9,7 +9,7 @@
 import Foundation
 
 struct SetGame {
-    private var deck: [Card]
+    private(set) var deck: [Card]
     private(set) var cards: [Card]
     private var numOfCurrentlySelected: Int
     
@@ -34,12 +34,21 @@ struct SetGame {
     }
     
     mutating func choose(_ card: Card){
-        if (numOfCurrentlySelected < 3){
-            if let chosenIndex = cards.firstIndex(where: {$0.id == card.id})
-            {
+        if (numOfCurrentlySelected == 3){
+            numOfCurrentlySelected = 0
+            removeMatchingCards()
+        }
+        
+        if let chosenIndex = cards.firstIndex(where: {$0.id == card.id})
+        {
+            if (!cards[chosenIndex].isSelected){
                 numOfCurrentlySelected += 1
                 cards[chosenIndex].isSelected = true
+            } else{
+                numOfCurrentlySelected -= 1
+                cards[chosenIndex].isSelected = false
             }
+            
             if (numOfCurrentlySelected == 3){
                 let matchedCards = cards.filter{$0.isSelected}
                 let cardMatch = determineMatch(matchedCards[0], matchedCards[1], matchedCards[2])
@@ -47,7 +56,6 @@ struct SetGame {
                     if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}){
                         cards[chosenIndex].isMatched = cardMatch ? .correct : .incorrect
                         cards[chosenIndex].isSelected = false
-                        numOfCurrentlySelected = 0
                     }
                 }
             }
@@ -56,6 +64,16 @@ struct SetGame {
     
     mutating func draw(_ numberOfNewCards: Int){
         cards.append(contentsOf: deck.extractElementsFromBack(numberOfNewCards))
+    }
+    
+    mutating func removeMatchingCards(){
+        let matchedCards = cards.filter{$0.isMatched == .correct}
+        for card in matchedCards{
+            if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}){
+                cards.remove(at: chosenIndex)
+                cards.append(contentsOf: deck.extractElementsFromBack(1))
+            }
+        }
     }
     
     func determineMatch(_ a: Card, _ b: Card, _ c: Card) -> Bool{
@@ -71,14 +89,15 @@ struct SetGame {
     func allSameOrAllDifferent<T: Equatable>(_ a: T, _ b: T, _ c: T) -> Bool {
         ((a == b) && (b == c)) || ((a != b) && (b != c) && (a != c))
     }
+    
+    
 }
 
 extension Array {
     mutating func extractElementsFromBack(_ numberOfElementsToRemove: Int) -> [Element]{
         var subArray: [Element] = []
         print(self.count)
-        print(self)
-        for _ in 1...numberOfElementsToRemove where numberOfElementsToRemove < self.count{
+        for _ in 1...numberOfElementsToRemove where self.count > 0{
             subArray.append(self.popLast()!)
         }
         return subArray
