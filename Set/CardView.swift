@@ -10,27 +10,12 @@ import SwiftUI
 
 struct CardView: View {
     let card: Card
+    let matchColor: (Card) -> Color
     
     var body: some View {
         GeometryReader{ geometry in
-            
-            ZStack{
-                let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                
-                if card.isSelected{
-                    shape.shadow(color: .gray, radius: 5).edgesIgnoringSafeArea(.all)
-                    shape.fill().foregroundColor(Color.init(red: 0.8, green: 0.8, blue: 0.8))
-                }
-                else{
-                    shape.fill().foregroundColor(.white)
-                }
-                
-                shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
-                generateShape(for: card)
-                    .padding(.leading, DrawingConstants.shapePadding)
-                    .padding(.trailing, DrawingConstants.shapePadding)
-                
-            }
+            generateShape(for: card)
+                .cardify(isFaceUp: card.isFaceUp, isSelected: card.isSelected, matchColor: matchColor(card))
         }
     }
 }
@@ -62,6 +47,36 @@ private func generateShape(for card: Card) -> some View{
     }
 }
 
+struct Cardify: ViewModifier{
+    var isFaceUp: Bool
+    var isSelected: Bool
+    var matchColor: Color
+    
+    func body(content: Content) -> some View {
+        ZStack{
+            let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+            
+            if isSelected{
+                shape.shadow(color: .gray, radius: 5).edgesIgnoringSafeArea(.all)
+                shape.fill().foregroundColor(Color.init(red: 0.8, green: 0.8, blue: 0.8))
+            }
+            else{
+                shape.fill().foregroundColor(.white)
+            }
+            shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
+            if(isFaceUp){
+                content
+                    .padding(.leading, DrawingConstants.shapePadding)
+                    .padding(.trailing, DrawingConstants.shapePadding)
+            }
+            else{
+                shape.fill().foregroundColor(matchColor)
+            }
+            
+        }
+        .foregroundColor(matchColor)
+    }
+}
 
 private struct DrawingConstants{
     static let cornerRadius: CGFloat = 15
@@ -69,6 +84,12 @@ private struct DrawingConstants{
     static let shapePadding: CGFloat = 15
 }
 
+
+extension View{
+    func cardify(isFaceUp: Bool, isSelected: Bool, matchColor: Color) -> some View{
+        self.modifier(Cardify(isFaceUp: isFaceUp, isSelected: isSelected, matchColor: matchColor))
+    }
+}
 
 // Code by Dávid Pásztor https://stackoverflow.com/a/65131928
 struct AnyShape: InsettableShape {

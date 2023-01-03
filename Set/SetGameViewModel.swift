@@ -24,6 +24,14 @@ class SetGameViewModel: ObservableObject {
         return model.deck.isEmpty
     }
     
+    var deck: [Card]{
+        return model.deck
+    }
+    
+    var discardPile: [Card]{
+        return model.discardPile
+    }
+    
     var score: Int{
         return model.playerScore
     }

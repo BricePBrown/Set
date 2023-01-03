@@ -11,6 +11,7 @@ import Foundation
 struct SetGame {
     private(set) var deck: [Card]
     private(set) var cards: [Card]
+    private(set) var discardPile: [Card]
     private var numOfCurrentlySelected: Int
     private(set) var playerScore: Int
     
@@ -19,6 +20,7 @@ struct SetGame {
         numOfCurrentlySelected = 0
         playerScore = 0
         deck = []
+        discardPile = []
         // each deck has 81 cards
         var index: Int = 0
         for shape in SetShapes.allCases {
@@ -33,6 +35,11 @@ struct SetGame {
         }
         deck.shuffle()
         cards = deck.extractElementsFromBack(12)
+        for card in cards {
+            if let choosenIndex = cards.firstIndex(where: {$0.id == card.id}){
+                cards[choosenIndex].isFaceUp = true
+            }
+        }
     }
     
     mutating func choose(_ card: Card){
@@ -67,6 +74,11 @@ struct SetGame {
     
     mutating func draw(_ numberOfNewCards: Int){
         cards.append(contentsOf: deck.extractElementsFromBack(numberOfNewCards))
+        for card in cards {
+            if let choosenIndex = cards.firstIndex(where: {$0.id == card.id}){
+                cards[choosenIndex].isFaceUp = true
+            }
+        }
     }
     
     mutating func removeMatchingCards(){
@@ -74,7 +86,7 @@ struct SetGame {
         for card in matchedCards{
             if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}){
                 cards.remove(at: chosenIndex)
-                cards.append(contentsOf: deck.extractElementsFromBack(1))
+                discardPile.append(card)
             }
         }
     }

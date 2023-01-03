@@ -38,6 +38,7 @@ struct Card: Identifiable {
     let id: Int
     
     // states of the card
+    var isFaceUp: Bool = false
     var isSelected: Bool = false
     var isMatched: SetMatches = .unmatched
 }
