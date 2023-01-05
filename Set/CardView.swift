@@ -23,6 +23,7 @@ struct CardView: View {
 private func generateShape(for card: Card) -> some View{
     
     let shapeColor: Color
+    
     switch card.color{
     case .a:
         shapeColor = .green
@@ -31,6 +32,7 @@ private func generateShape(for card: Card) -> some View{
     case .c:
         shapeColor = .purple
     }
+    
     return GeometryReader{ geometry in
         VStack{
             Spacer()
@@ -47,7 +49,7 @@ private func generateShape(for card: Card) -> some View{
     }
 }
 
-struct Cardify: ViewModifier{
+struct Cardify: AnimatableModifier{
     var isFaceUp: Bool
     var isSelected: Bool
     var matchColor: Color

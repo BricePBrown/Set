@@ -46,9 +46,7 @@ class SetGameViewModel: ObservableObject {
         if (!cards.filter{$0.isMatched == .correct}.isEmpty) {
             model.removeMatchingCards()
         }
-        else{
-            model.draw(numberOfNewCards)
-        }
+        model.draw(numberOfNewCards)
     }
     
     func newGame(){
